@@ -13,6 +13,7 @@ using System.Windows.Forms;
 // 1) The ball should be bounced, whenever, it hits the "players". 
 // 2) When it exceeds the player, the counter/point of the player should be incremented.
 // 3) It should be played against computer and eventually against a player. 
+// 4) To start, the player should be able to move up and down.
 
 namespace Pong_game
 {
@@ -27,5 +28,7 @@ namespace Pong_game
         {
             
         }
+
+      
     }
 }
