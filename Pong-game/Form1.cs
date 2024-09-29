@@ -12,14 +12,19 @@ using System.Windows.Forms;
 using System.Numerics;
 using System.Windows;
 using Point = System.Drawing.Point;
+using System.Net.Sockets;
 
 // The following should be implemented: 
 
-// 1) The ball should be bounced, whenever, it hits the "player". 
+// 1) The ball should be bounced, whenever, it hits the "player". Check
 // 2) When it exceeds the player, the counter/point of the player should be incremented.
 // 3) It should be played against computer and eventually against a player. 
 // 4) To start, the player should be able to move up and down. Check  
 // 5) Add boundary so that player shouldn't be able to move off the boundary. Check
+
+// X
+// x
+// ||
 
 namespace Pong_game
 {
@@ -29,9 +34,14 @@ namespace Pong_game
         // x
         // ||
 
-        private int move_x = 5;
-        private int move_y = 5;
+        //If the racket hits the ball at the top corner, then it should bounce off towards our top border.
+        //If the racket hits the ball at the center, then it should bounce off towards the right, and not up or down at all.
+        //If the racket hits the ball at the bottom corner, then it should bounce off towards our bottom border.
 
+        private int move_x = 5; // The speed
+        private int move_y = 5; // The speed
+        private Random rand = new Random();
+  
 
         public Form1()
         {
@@ -61,43 +71,54 @@ namespace Pong_game
 
         private void ball_Move(object sender, EventArgs e)
         {
-            int x_ball = Ball.Location.X;
-            int y_ball = Ball.Location.Y;
+         
+            Ball.Left += move_x;
+            Ball.Top += move_y;
 
-            x_ball += move_x;
-
-            if(x_ball < 0 || x_ball + Ball.Width > this.ClientSize.Width)
-            {
-                move_x = -move_x;   
-            }
-
-            y_ball += move_y;
-
-            if(y_ball < 0 || y_ball + Ball.Height > this.ClientSize.Height)
+            if(Ball.Top < 0 || Ball.Bottom > this.ClientSize.Height)
             {
                 move_y = -move_y;
             }
 
-            if(Ball.Bounds.IntersectsWith(pictureBox1.Bounds))
+            if(Ball.Left < 0 || Ball.Right > this.ClientSize.Width)
             {
-               
-                int playerCenter = pictureBox1.Location.Y + (pictureBox1.Height / 2);
-                int ballCenter = y_ball + (Ball.Height / 2);
-
-                if(playerCenter > ballCenter)
-                {
-                    move_y = -Math.Abs(move_y);
-                }
-
-                else if(playerCenter < ballCenter)
-                {
-                    move_y = Math.Abs(move_y);
-                }
                 move_x = -move_x;
             }
 
-            Ball.Location = new Point(x_ball, y_ball);
-            this.Invalidate();
+
+
+            /*
+            if(Ball.Left < -2)
+            {
+                Ball.Left = this.ClientSize.Width / 2;
+                move_x = -move_x;
+            }
+
+            if(Ball.Right > this.ClientSize.Width + 2)
+            {
+                Ball.Left = this.ClientSize.Width / 2;
+                move_x = -move_x;
+            }
+            
+            */
+
+            //https://www.mooict.com/c-tutorials-create-a-simple-pong-game-in-windows-forms-and-visual-studio/
+
+            if (Ball.Bounds.IntersectsWith(pictureBox1.Bounds))
+            {
+                Ball.Left = pictureBox1.Left - Ball.Width - 5;
+
+                int x = 6;
+                int y = 6;
+
+                
+                move_x = move_x < 0 ? x : -x;
+                move_y = move_y < 0 ? -y : y;
+
+            }
+
+            //Ball.Location = new Point(x_ball, y_ball);
+            this.Invalidate(); 
         }
 
 
@@ -125,8 +146,9 @@ namespace Pong_game
    
             pictureBox1.Location = new Point(x, y);
             this.Invalidate();
-        } 
+        }
 
+       
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
 
