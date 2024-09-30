@@ -17,7 +17,7 @@ using System.Net.Sockets;
 // The following should be implemented: 
 
 // 1) The ball should be bounced, whenever, it hits the "player". Check
-// 2) When it exceeds the player, the counter/point of the player should be incremented.
+// 2) When it exceeds the player, the counter/point of the player should be incremented. Check
 // 3) It should be played against computer and eventually against a player. 
 // 4) To start, the player should be able to move up and down. Check  
 // 5) Add boundary so that player shouldn't be able to move off the boundary. Check
@@ -33,8 +33,6 @@ namespace Pong_game
         // X
         // x
         // ||
-
-
 
         private int move_x = 5; // Speed in x-axis
         private int move_y = 5; // Speed in y-axis
@@ -71,10 +69,11 @@ namespace Pong_game
 
         private void ball_Move(object sender, EventArgs e)
         {
-            //string sc = PlayerScore.Text;
-
+         
             Ball.Left += move_x;
             Ball.Top += move_y;
+
+            int Sc = Int32.Parse(PlayerScore.Text);
 
 
             if(Ball.Top < 0 || Ball.Bottom > this.ClientSize.Height)
@@ -87,8 +86,11 @@ namespace Pong_game
                 Ball.Left = this.ClientSize.Width / 2;
                 isStartingRight = !isStartingRight;
                 move_x = isStartingRight ? Math.Abs(move_x) : -Math.Abs(move_x);
-
+                Sc = Sc + 1;
+                PlayerScore.Text = Sc.ToString();
             }
+
+
 
             if (Ball.Right > this.ClientSize.Width)
             {
