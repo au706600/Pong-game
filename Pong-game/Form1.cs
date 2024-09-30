@@ -109,12 +109,26 @@ namespace Pong_game
             {
                 Ball.Left = pictureBox1.Left - Ball.Width - 5;
 
-                int x = 6;
-                int y = 6;
+                int x = 7;
+                int y = 7;
 
-                
-                move_x = move_x < 0 ? x : -x;
-                move_y = move_y < 0 ? -y : y;
+                int playerCenter = pictureBox1.Top + (pictureBox1.Height / 2);
+                int ballCenter = Ball.Top + (Ball.Height / 2);
+
+                int centerRange = 10;
+
+                if (Math.Abs(ballCenter - playerCenter) <= centerRange)
+                {
+                    move_x = -move_x;
+                    move_y = 0;
+                }
+
+               
+                else
+                {
+                    move_x = move_x < 0 ? x : -x;
+                    move_y = move_y < 0 ? -y : y;
+                }
 
             }
 
