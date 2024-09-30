@@ -36,9 +36,7 @@ namespace Pong_game
 
         private int move_x = 5; // Speed in x-axis
         private int move_y = 5; // Speed in y-axis
-        int playerWins = 0;
         bool isStartingRight = true;
-        //int computerWins = 0;
 
 
         public Form1()
