@@ -21,6 +21,7 @@ using System.Net.Sockets;
 // 3) It should be played against computer and eventually against a player. 
 // 4) To start, the player should be able to move up and down. Check  
 // 5) Add boundary so that player shouldn't be able to move off the boundary. Check
+// 6) Integrate MQTT
 
 // X
 // x
