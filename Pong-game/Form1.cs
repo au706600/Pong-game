@@ -34,13 +34,14 @@ namespace Pong_game
         // x
         // ||
 
-        //If the racket hits the ball at the top corner, then it should bounce off towards our top border.
-        //If the racket hits the ball at the center, then it should bounce off towards the right, and not up or down at all.
-        //If the racket hits the ball at the bottom corner, then it should bounce off towards our bottom border.
 
-        private int move_x = 5; // The speed
-        private int move_y = 5; // The speed
-  
+
+        private int move_x = 5; // Speed in x-axis
+        private int move_y = 5; // Speed in y-axis
+        int playerWins = 0;
+        bool isStartingRight = true;
+        //int computerWins = 0;
+
 
         public Form1()
         {
@@ -50,7 +51,7 @@ namespace Pong_game
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.KeyDown += new KeyEventHandler(Form1_KeyDown);
+            this.KeyDown += new KeyEventHandler(Form1_KeyDown); 
 
             // https://stackoverflow.com/questions/1142828/add-timer-to-a-windows-forms-application
             Timer ballTimer = new Timer();
@@ -70,38 +71,33 @@ namespace Pong_game
 
         private void ball_Move(object sender, EventArgs e)
         {
-         
+            //string sc = PlayerScore.Text;
+
             Ball.Left += move_x;
             Ball.Top += move_y;
+
 
             if(Ball.Top < 0 || Ball.Bottom > this.ClientSize.Height)
             {
                 move_y = -move_y;
             }
 
-            // For now, we use this to make it bounce on the left and right walls. 
-
-            if(Ball.Left < 0 || Ball.Right > this.ClientSize.Width)
-            {
-                move_x = -move_x;
-            }
-
-
-
-            /*
-            if(Ball.Left < -2)
+            if (Ball.Left < 0)
             {
                 Ball.Left = this.ClientSize.Width / 2;
-                move_x = -move_x;
+                isStartingRight = !isStartingRight;
+                move_x = isStartingRight ? Math.Abs(move_x) : -Math.Abs(move_x);
+
             }
 
-            if(Ball.Right > this.ClientSize.Width + 2)
+            if (Ball.Right > this.ClientSize.Width)
             {
                 Ball.Left = this.ClientSize.Width / 2;
-                move_x = -move_x;
+                isStartingRight = !isStartingRight;
+                move_x = isStartingRight ? Math.Abs(move_x) : -Math.Abs(move_x);
+                              
             }
-            
-            */
+                
 
             //https://www.mooict.com/c-tutorials-create-a-simple-pong-game-in-windows-forms-and-visual-studio/
 
@@ -119,7 +115,7 @@ namespace Pong_game
 
                 if (Math.Abs(ballCenter - playerCenter) <= centerRange)
                 {
-                    move_x = -move_x;
+                    move_x = -10;
                     move_y = 0;
                 }
 
