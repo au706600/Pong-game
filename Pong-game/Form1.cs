@@ -40,7 +40,6 @@ namespace Pong_game
 
         private int move_x = 5; // The speed
         private int move_y = 5; // The speed
-        private Random rand = new Random();
   
 
         public Form1()
@@ -79,6 +78,8 @@ namespace Pong_game
             {
                 move_y = -move_y;
             }
+
+            // For now, we use this to make it bounce on the left and right walls. 
 
             if(Ball.Left < 0 || Ball.Right > this.ClientSize.Width)
             {
