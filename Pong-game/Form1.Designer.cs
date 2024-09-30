@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.player = new System.Windows.Forms.PictureBox();
+            this.computer = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
@@ -43,10 +43,10 @@
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.Ball = new System.Windows.Forms.PictureBox();
             this.PlayerScore = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.ComputerScore = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.computer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -60,24 +60,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.Ball)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // player
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(887, 179);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(29, 77);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.player.Image = ((System.Drawing.Image)(resources.GetObject("player.Image")));
+            this.player.Location = new System.Drawing.Point(887, 179);
+            this.player.Name = "player";
+            this.player.Size = new System.Drawing.Size(29, 77);
+            this.player.TabIndex = 0;
+            this.player.TabStop = false;
+            this.player.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // pictureBox2
+            // computer
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(48, 179);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(29, 77);
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
+            this.computer.Image = ((System.Drawing.Image)(resources.GetObject("computer.Image")));
+            this.computer.Location = new System.Drawing.Point(48, 179);
+            this.computer.Name = "computer";
+            this.computer.Size = new System.Drawing.Size(29, 77);
+            this.computer.TabIndex = 1;
+            this.computer.TabStop = false;
             // 
             // pictureBox4
             // 
@@ -183,22 +183,22 @@
             this.PlayerScore.AutoSize = true;
             this.PlayerScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.PlayerScore.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.PlayerScore.Location = new System.Drawing.Point(619, 24);
+            this.PlayerScore.Location = new System.Drawing.Point(620, 9);
             this.PlayerScore.Name = "PlayerScore";
             this.PlayerScore.Size = new System.Drawing.Size(23, 25);
             this.PlayerScore.TabIndex = 14;
             this.PlayerScore.Text = "0";
             // 
-            // label2
+            // ComputerScore
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(277, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 25);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "0";
+            this.ComputerScore.AutoSize = true;
+            this.ComputerScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.ComputerScore.ForeColor = System.Drawing.SystemColors.Control;
+            this.ComputerScore.Location = new System.Drawing.Point(316, 9);
+            this.ComputerScore.Name = "ComputerScore";
+            this.ComputerScore.Size = new System.Drawing.Size(23, 25);
+            this.ComputerScore.TabIndex = 15;
+            this.ComputerScore.Text = "0";
             // 
             // Form1
             // 
@@ -206,7 +206,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClientSize = new System.Drawing.Size(964, 480);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.ComputerScore);
             this.Controls.Add(this.PlayerScore);
             this.Controls.Add(this.Ball);
             this.Controls.Add(this.pictureBox12);
@@ -219,15 +219,15 @@
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.computer);
+            this.Controls.Add(this.player);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.computer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -246,8 +246,8 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox player;
+        private System.Windows.Forms.PictureBox computer;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
@@ -260,7 +260,7 @@
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.PictureBox Ball;
         private System.Windows.Forms.Label PlayerScore;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label ComputerScore;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
