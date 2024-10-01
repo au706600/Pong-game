@@ -84,7 +84,7 @@ namespace Pong_game
                 Ball.Left = this.ClientSize.Width / 2;
                 isStartingRight = !isStartingRight;
                 move_x = isStartingRight ? Math.Abs(move_x) : -Math.Abs(move_x);
-                Sc = Sc++;
+                Sc = Sc + 1;
                 PlayerScore.Text = Sc.ToString();
             }
 
