@@ -18,7 +18,7 @@ using System.Net.Sockets;
 
 // 1) The ball should be bounced, whenever, it hits the "player". Check
 // 2) When it exceeds the player, the counter/point of the player should be incremented. Check
-// 3) It should be played against computer and eventually against a player. 
+// 3) It should be played against computer and eventually against a player. Check
 // 4) To start, the player should be able to move up and down. Check  
 // 5) Add boundary so that player shouldn't be able to move off the boundary. Check
 
@@ -47,7 +47,7 @@ namespace Pong_game
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.KeyDown += new KeyEventHandler(Form1_KeyDown); 
+            this.KeyDown += new KeyEventHandler(Form1_KeyDown);
 
             // https://stackoverflow.com/questions/1142828/add-timer-to-a-windows-forms-application
             Timer ballTimer = new Timer();
@@ -55,6 +55,12 @@ namespace Pong_game
             ballTimer.Tick += ball_Move;
             ballTimer.Enabled = true;
             ballTimer.Start();
+
+            Timer ComputerTimer = new Timer();
+            ComputerTimer.Interval = 16;
+            ComputerTimer.Tick += computerMovement;
+            ComputerTimer.Enabled = true;
+            ComputerTimer.Start();
         }
 
 
@@ -90,7 +96,7 @@ namespace Pong_game
 
 
 
-            if (Ball.Right > this.ClientSize.Width)
+            if (Ball.Right > this.ClientSize.Width) 
             {
                 Ball.Left = this.ClientSize.Width / 2;
                 isStartingRight = !isStartingRight;
@@ -98,6 +104,29 @@ namespace Pong_game
                               
             }
                 
+            if(Ball.Bounds.IntersectsWith(computer.Bounds))
+            {
+                Ball.Left = computer.Right + Ball.Width + 5;
+                int x = 7;
+                int y = 7;
+
+                int ComputerCenter = computer.Top + (computer.Height / 2);
+                int BallCenter = Ball.Top + (Ball.Height / 2);
+
+                int centerRange = 10;
+
+                if(Math.Abs(BallCenter - ComputerCenter) <= centerRange)
+                {
+                    move_x = 10;
+                    move_y = 0;
+                }
+
+                else
+                {
+                    move_x = move_x < 0 ? x : -x;
+                    move_y = move_y < 0 ? -y : y;
+                }
+            }
 
             //https://www.mooict.com/c-tutorials-create-a-simple-pong-game-in-windows-forms-and-visual-studio/
 
@@ -132,6 +161,35 @@ namespace Pong_game
             this.Invalidate(); 
         }
 
+        private void computerMovement(object sender, EventArgs e)
+        {
+            int Computer_y = computer.Location.Y;
+            int Computer_x = computer.Location.X;
+
+            if(Ball.Location.X <= this.ClientSize.Width / 2)
+            {
+                                
+                if(Ball.Location.Y > computer.Top + (computer.Height / 2))
+                {
+                    if (Computer_y + computer.Height <= this.ClientSize.Height)
+                    {
+                        Computer_y += 5;
+                    }
+                }
+
+                else if(Ball.Location.Y < computer.Top + (computer.Height/2))
+                {
+                    if (Computer_y >= 0)
+                    {
+                        Computer_y -= 5;
+                    }
+                }
+
+            }
+
+            computer.Location = new Point(Computer_x, Computer_y);
+            this.Invalidate();
+        }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
