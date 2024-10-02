@@ -79,6 +79,8 @@ namespace Pong_game
 
             int Sc = Int32.Parse(PlayerScore.Text);
 
+            int pc = Int32.Parse(ComputerScore.Text);
+
 
             if(Ball.Top < 0 || Ball.Bottom > this.ClientSize.Height)
             {
@@ -101,7 +103,9 @@ namespace Pong_game
                 Ball.Left = this.ClientSize.Width / 2;
                 isStartingRight = !isStartingRight;
                 move_x = isStartingRight ? Math.Abs(move_x) : -Math.Abs(move_x);
-                              
+                pc = pc + 1;
+                ComputerScore.Text = pc.ToString();
+                             
             }
                 
             if(Ball.Bounds.IntersectsWith(computer.Bounds))
