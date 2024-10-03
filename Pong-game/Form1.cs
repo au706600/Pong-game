@@ -178,7 +178,7 @@ namespace Pong_game
                 {
                     if (Computer_y + computer.Height <= this.ClientSize.Height)
                     {
-                        Computer_y += 5;
+                        Computer_y += 7;
                     }
                 }
 
@@ -186,7 +186,7 @@ namespace Pong_game
                 {
                     if (Computer_y >= 0)
                     {
-                        Computer_y -= 5;
+                        Computer_y -= 7;
                     }
                 }
 
@@ -206,14 +206,14 @@ namespace Pong_game
                 case Keys.Down:
                     if(y + player.Height <= this.ClientSize.Height)
                     {
-                        y += 5;
+                        y += 6;
                     }
                     break;
 
                 case Keys.Up:
                     if(y >= 0)
                     {
-                        y -= 5;
+                        y -= 6;
                     }
                     break;
             }
