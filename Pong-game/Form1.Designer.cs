@@ -62,20 +62,22 @@
             // 
             // player
             // 
+            this.player.BackColor = System.Drawing.Color.MidnightBlue;
             this.player.Image = ((System.Drawing.Image)(resources.GetObject("player.Image")));
-            this.player.Location = new System.Drawing.Point(887, 179);
+            this.player.Location = new System.Drawing.Point(896, 179);
             this.player.Name = "player";
-            this.player.Size = new System.Drawing.Size(29, 77);
+            this.player.Size = new System.Drawing.Size(29, 89);
             this.player.TabIndex = 0;
             this.player.TabStop = false;
             this.player.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // computer
             // 
+            this.computer.BackColor = System.Drawing.Color.MidnightBlue;
             this.computer.Image = ((System.Drawing.Image)(resources.GetObject("computer.Image")));
             this.computer.Location = new System.Drawing.Point(48, 179);
             this.computer.Name = "computer";
-            this.computer.Size = new System.Drawing.Size(29, 77);
+            this.computer.Size = new System.Drawing.Size(28, 89);
             this.computer.TabIndex = 1;
             this.computer.TabStop = false;
             // 
@@ -204,7 +206,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.ClientSize = new System.Drawing.Size(964, 480);
             this.Controls.Add(this.ComputerScore);
             this.Controls.Add(this.PlayerScore);
@@ -221,6 +223,7 @@
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.computer);
             this.Controls.Add(this.player);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

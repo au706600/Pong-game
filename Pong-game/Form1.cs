@@ -13,6 +13,7 @@ using System.Numerics;
 using System.Windows;
 using Point = System.Drawing.Point;
 using System.Net.Sockets;
+using System.Drawing.Drawing2D;
 
 // The following should be implemented: 
 
@@ -42,6 +43,7 @@ namespace Pong_game
         public Form1()
         {
             InitializeComponent();
+           
         }
  
 
@@ -64,7 +66,6 @@ namespace Pong_game
         }
 
 
-       
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             
@@ -73,7 +74,7 @@ namespace Pong_game
 
         private void ball_Move(object sender, EventArgs e)
         {
-         
+                    
             Ball.Left += move_x;
             Ball.Top += move_y;
 
