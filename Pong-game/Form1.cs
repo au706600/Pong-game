@@ -89,7 +89,7 @@ namespace Pong_game
             }
 
             if (Ball.Left < 0)
-            {
+            { 
                 Ball.Left = this.ClientSize.Width / 2;
                 isStartingRight = !isStartingRight;
                 move_x = isStartingRight ? Math.Abs(move_x) : -Math.Abs(move_x);
@@ -120,6 +120,21 @@ namespace Pong_game
 
                 int centerRange = 10;
 
+                if(move_y == 0)
+                {
+                    if(ComputerCenter < BallCenter)
+                    {
+                        move_x = -move_x;
+                        move_y += 5;
+                    }
+
+                    else
+                    {
+                        move_x = move_x < 0 ? x : -x;
+                        move_y = move_y < 0 ? -y : y;
+                    }
+                }
+
                 if(Math.Abs(BallCenter - ComputerCenter) <= centerRange)
                 {
                     move_x = 10;
@@ -147,6 +162,21 @@ namespace Pong_game
 
                 int centerRange = 10;
 
+                if(move_y == 0) 
+                {
+                    if (ballCenter < playerCenter)
+                    {
+                        move_x = -move_x;
+                        move_y -= 5;
+                    }
+
+                    else
+                    {
+                        move_x = move_x < 0 ? x : -x;
+                        move_y = move_y < 0 ? -y : y;
+                    }
+                }
+
                 if (Math.Abs(ballCenter - playerCenter) <= centerRange)
                 {
                     move_x = -10;
@@ -161,6 +191,7 @@ namespace Pong_game
                 }
 
             }
+
 
             //Ball.Location = new Point(x_ball, y_ball);
             this.Invalidate(); 
