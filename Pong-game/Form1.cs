@@ -35,8 +35,8 @@ namespace Pong_game
         // x
         // ||
 
-        private int move_x = 5; // Speed in x-axis
-        private int move_y = 5; // Speed in y-axis
+        private int move_x = 7; // Speed in x-axis
+        private int move_y = 7; // Speed in y-axis
         bool isStartingRight = true;
 
 
@@ -209,7 +209,7 @@ namespace Pong_game
                 {
                     if (Computer_y + computer.Height <= this.ClientSize.Height)
                     {
-                        Computer_y += 7;
+                        Computer_y += 6;
                     }
                 }
 
@@ -217,7 +217,7 @@ namespace Pong_game
                 {
                     if (Computer_y >= 0)
                     {
-                        Computer_y -= 7;
+                        Computer_y -= 6;
                     }
                 }
 
