@@ -250,6 +250,7 @@ namespace Pong_game
             int x = player.Location.X;
             int Y_Size = Form1.ActiveForm.Height; 
             
+            /*
             
             if(e.KeyCode == Keys.P)
             {
@@ -261,14 +262,7 @@ namespace Pong_game
                 ResumeGame();
             }
 
-            /*
-            else if(e.KeyCode == Keys.O)
-            {
-                ResumeGame();
-            }
-
             */
-
  
             switch (e.KeyCode)
             {
@@ -284,6 +278,14 @@ namespace Pong_game
                     {
                         y -= 6;
                     }
+                    break;
+
+                case Keys.P:
+                    PauseGame();
+                    break;
+
+                case Keys.O:
+                    ResumeGame();
                     break;
             }
    
