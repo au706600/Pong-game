@@ -14,6 +14,8 @@ using System.Windows;
 using Point = System.Drawing.Point;
 using System.Net.Sockets;
 using System.Drawing.Drawing2D;
+using System.Diagnostics;
+using System.Security.Policy;
 
 // The following should be implemented: 
 
@@ -38,6 +40,8 @@ namespace Pong_game
         private int move_x = 7; // Speed in x-axis
         private int move_y = 7; // Speed in y-axis
         bool isStartingRight = true;
+        Timer ballTimer = new Timer();
+        Timer ComputerTimer = new Timer();
 
 
         public Form1()
@@ -50,15 +54,14 @@ namespace Pong_game
         private void Form1_Load(object sender, EventArgs e)
         {
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
+            this.KeyPreview = true;
 
             // https://stackoverflow.com/questions/1142828/add-timer-to-a-windows-forms-application
-            Timer ballTimer = new Timer();
-            ballTimer.Interval = 16; 
+            ballTimer.Interval = 16;  
             ballTimer.Tick += ball_Move;
             ballTimer.Enabled = true;
             ballTimer.Start();
 
-            Timer ComputerTimer = new Timer();
             ComputerTimer.Interval = 16;
             ComputerTimer.Tick += computerMovement;
             ComputerTimer.Enabled = true;
@@ -197,6 +200,7 @@ namespace Pong_game
             this.Invalidate(); 
         }
 
+
         private void computerMovement(object sender, EventArgs e)
         {
             int Computer_y = computer.Location.Y;
@@ -227,11 +231,45 @@ namespace Pong_game
             this.Invalidate();
         }
 
+        private void PauseGame()
+        {
+            ballTimer.Enabled = false;
+            ComputerTimer.Enabled = false;
+        }
+
+        private void ResumeGame()
+        {
+            ballTimer.Enabled = true;
+            ComputerTimer.Enabled = true;
+        }
+        
+
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             int y = player.Location.Y;
             int x = player.Location.X;
             int Y_Size = Form1.ActiveForm.Height; 
+            
+            
+            if(e.KeyCode == Keys.P)
+            {
+                PauseGame();
+            }
+
+            if(e.KeyCode == Keys.O)
+            {
+                ResumeGame();
+            }
+
+            /*
+            else if(e.KeyCode == Keys.O)
+            {
+                ResumeGame();
+            }
+
+            */
+
+ 
             switch (e.KeyCode)
             {
                 case Keys.Down:
